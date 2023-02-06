@@ -1,9 +1,16 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">View User</li>
+    <li class="breadcrumb-item"><a href="/">Нүүр</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Өөрчлөх</li>
   </ol>
 </nav>
+
+{{#if alert}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{alert}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}
 
 <div class="view-user p-5">
   {{#each rows}}
@@ -17,10 +24,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Овог</th>
+            <th scope="col">Нэр</th>
+            <th scope="col">Имэйл</th>
+            <th scope="col">Утас</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +42,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <b>Comments</b>
+        <b>Тэмдэглэл</b>
       </div>
     </div>
     <div class="row">
