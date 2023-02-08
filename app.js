@@ -23,7 +23,6 @@ const port = process.env.port || 3000;
 // Parsing middleware
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(express.urlencoded({ extended: true }));
 
 // Parse application/json
 app.use(bodyParser.json());

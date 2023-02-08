@@ -30,6 +30,10 @@ exports.view = (req, res) => {
     );
   });
 };
+// view lesson
+exports.show = (req, res) => {
+  res.render("first-lesson");
+};
 // find by search
 exports.find = (req, res) => {
   pool.getConnection((err, connection) => {
@@ -59,14 +63,14 @@ exports.form = (req, res) => {
 
 // add new student
 exports.create = (req, res) => {
-  const { first_name, last_name, email, phone, comments } = req.body;
+  const { first_name, last_name, email, phone, password, comments } = req.body;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log("Connected as ID " + connection.threadId);
     // student connection
     connection.query(
-      "INSERT INTO student SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ?",
-      [first_name, last_name, email, phone, comments],
+      "INSERT INTO student SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ?, comments = ?",
+      [first_name, last_name, email, phone, password, comments],
       (err, rows) => {
         connection.release();
         if (!err) {
@@ -104,20 +108,19 @@ exports.edit = (req, res) => {
 
 // Update
 exports.update = (req, res) => {
-  const { first_name, last_name, email, phone, comments } = req.body;
+  const { first_name, last_name, email, phone, password, comments } = req.body;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log("Connected as ID " + connection.threadId);
     connection.query(
-      "UPDATE student SET first_name = ?, last_name = ?, email = ?, phone = ? WHERE id = ?",
-      [first_name, last_name, email, phone, comments, req.params.id],
+      "UPDATE student SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ?, comments = ? WHERE id = ?",
+      [first_name, last_name, email, phone, password, comments, req.params.id],
       (err, rows) => {
         connection.release();
         if (!err) {
           pool.getConnection((err, connection) => {
             if (err) throw err;
             console.log("Connected as ID " + connection.threadId);
-            // student connection
             connection.query(
               "SELECT * FROM student WHERE id = ?",
               [req.params.id],
